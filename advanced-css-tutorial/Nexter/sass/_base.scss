@@ -1,0 +1,86 @@
+// COLOR VARIABLES
+$color-primary: #c69963;
+$color-primary-dark: #b28451;
+
+$color-secondary: #101d2c;
+
+$color-grey-light-1: #f9f7f6;
+$color-grey-light-2: #aaa;
+
+$color-grey-dark-1: #54483a;
+$color-grey-dark-2: #6d5d4b;
+
+// FONT VARIABLES
+$font-primary: "Nunito", sans-serif;
+$font-display: "Josefin Sans", sans-serif;
+
+// RESPONSIVE BREAKPOINTS
+$bp-largest: 75em; // 1200px / 16px => 75em
+$bp-large: 62.5em; // 1000px / 16px => 62.5em
+$bp-medium: 50em; // 800px / 16px => 50em
+$bp-small: 37.5em; // 600px / 16px => 37.5em
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+  font-size: 62.5%; // 10px/16px = 0.625 => 1rem = 10px
+
+  @media only screen and (max-width: $bp-largest) {
+    font-size: 50%; // 8px/16px = 0.5 => 1rem = 8px
+  }
+}
+
+body {
+  font-family: $font-primary;
+  color: $color-grey-dark-2;
+  font-weight: 300;
+  line-height: 1.6;
+}
+
+.container {
+  // initializing the grid container
+  display: grid;
+  // defining grid rows
+  // 1st row - 80vh
+  // 2nd row - by setting min-content we ensure that the height will be enough for all content to fit
+  // 3rd row - by setting the vw we ensure responsivness of the story section (when we resize the viewport the row height will depend on the viewport width)
+  // 4th, 5th, 6th row - by setting min-content we ensure that the height will be enough for all content to fit
+  grid-template-rows: 80vh min-content 40vw repeat(3, min-content);
+
+  // creating a column grid with a fixed width
+  // 8rem is the sidebar column
+  // the following 1fr and the one at the end ensures that the 8 column grids with a fixed width can be nicely centered (they are inside a minmax function so that we still have some margin when the viewport width is small)
+  // minmax function ensures that column widths are adaptive
+  // we are also naming the column tracks for ease of use, the col-start and col-end inside the repeat function will have the numbers at the end, e.g. col-start 1
+  grid-template-columns:
+    [sidebar-start] 8rem
+    [sidebar-end full-start] minmax(6rem, 1fr)
+    [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+    [center-end] minmax(6rem, 1fr)
+    [full-end];
+
+  // CSS grid enables easily changing the layout in media queries
+  // also note the importance of naming the grid tracks
+  @media only screen and (max-width: $bp-large) {
+    grid-template-rows: 6rem 80vh min-content 40vw repeat(3, min-content);
+    grid-template-columns:
+      [full-start] minmax(6rem, 1fr)
+      [center-start] repeat(8, [col-start] minmax(min-content, 14rem) [col-end])
+      [center-end] minmax(6rem, 1fr)
+      [full-end];
+  }
+
+  @media only screen and (max-width: $bp-medium) {
+    // here we initially changed all further rows to min content, however at that point they no longer need to be explicitly defined - the automatic placement algorithm will do the job for us
+    grid-template-rows:
+      6rem
+      calc(100vh - 6rem);
+  }
+}

@@ -1,0 +1,25 @@
+{
+  "streams": [
+    {
+      "title": "My stream",
+      "description": "cool stream",
+      "id": 1
+    },
+    {
+      "title": "Other stream",
+      "description": "Here's some stream",
+      "id": 2
+    },
+    {
+      "title": "test stream editted",
+      "description": "fdsafsdfdsafsda",
+      "id": 4
+    },
+    {
+      "title": "streamko",
+      "description": "streamovic",
+      "userId": "115580960527726486954",
+      "id": 5
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Menu</title>
+</head>
+
+<body>
+    <div th:fragment="main-menu">
+        <a th:href="@{/}">Home Page</a>
+        <a th:href="@{/profile}">Profile</a>
+    </div>
+
+    <p th:fragment="footer-menu">
+        <a href="privacy">Privacy</a>
+        <a href="terms">Terms and Conditions</a>
+    </p>
+</body>
+
+</html>

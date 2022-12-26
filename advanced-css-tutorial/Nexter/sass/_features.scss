@@ -1,0 +1,46 @@
+.features {
+  // POSITIONING THE FEATURES IN THE GRID
+  // we don't need to specify the rows since the features occupy one row based on the order in the html
+  // we have named columns which makes this much easier to understand
+  grid-column: center-start / center-end;
+
+  margin: 15rem 0;
+
+  // a grid item can also be a grid container (nesting)
+  display: grid;
+  // with this trick we have responsiveness solved out of the box
+  // auto-fit makes it so that we will have as many columns as are able to fit
+  // their width will never be less than 25rem, and if there is enough space than it will be 1fr
+  grid-template-columns: repeat(auto-fit, minmax(25rem, 1fr));
+
+  // grid-gap has been deprecated in favour of the gap property
+  gap: 6rem;
+
+  // by default this is set to stretch, this enables us to have each text in a given feature start from the begining of the cell, thus making it aligned, try removing this property to see what I'm talking about
+  align-items: start;
+}
+
+.feature {
+  display: grid;
+  // making the first column adapt to the icon width
+  grid-template-columns: min-content 1fr;
+
+  row-gap: 1.5rem;
+  column-gap: 2.5rem;
+
+  &__icon {
+    // this property is used to change the color of an svg icon
+    fill: $color-primary;
+    width: 4.5rem;
+    height: 4.5rem;
+
+    // we couldn't have used -1 here because that only works when we explicitly define grid rows which we didn't do here
+    grid-row: 1 / span 2;
+
+    transform: translateY(-1rem);
+  }
+
+  &__text {
+    font-size: 1.7rem;
+  }
+}

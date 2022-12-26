@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>default values - framework aside</title>
+</head>
+<body>
+
+    <!-- these script tags get collided into one file  -->
+    <!-- it's important that they don't clash -->
+    <!-- in the default case, if we don't handle clashes, they will go sequentionally and Lib 2 will be printed -->
+    <script src="lib1.js"></script>
+    <script src="lib2.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

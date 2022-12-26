@@ -1,0 +1,79 @@
+.header {
+  // POSITIONING THE HEADER IN THE GRID
+  // we don't need to specify the rows since the header occupies one row based on the order in the html
+  // we have named columns which makes this much easier to understand
+  grid-column: full-start / col-end 6;
+
+  background-image: linear-gradient(
+      rgba($color-secondary, 0.93),
+      rgba($color-secondary, 0.93)
+    ),
+    url(../img/hero.jpeg);
+  background-size: cover;
+  background-position: center;
+  padding: 8rem;
+  padding-top: 4rem;
+
+  display: grid;
+  // this works well because in the base we have the header defined to have the height of 80vh
+  // this way the first row will take as much space as it can
+  grid-template-rows: 1fr min-content minmax(6rem, min-content) 1fr;
+  // we don't want the column to take all the available space but only the minimum amount necessary (without line breaks - lookup what max-content does)
+  // minmax for responsiveness
+  grid-template-columns: minmax(min-content, max-content);
+  // big advantage of grid is the gap property because we don't have to play around with margins
+  row-gap: 1.5rem;
+  justify-content: center;
+
+  @media only screen and (max-width: $bp-medium) {
+    grid-column: 1 / -1;
+  }
+
+  @media only screen and (max-width: $bp-small) {
+    padding: 5rem;
+  }
+
+  &__logo {
+    height: 3rem;
+    justify-self: center;
+  }
+
+  &__btn {
+    align-self: start;
+    justify-self: start;
+  }
+
+  &__seenon-text {
+    display: grid;
+    grid-template-columns: 1fr max-content 1fr;
+    column-gap: 1.5rem;
+    align-items: center;
+
+    font-size: 1.6rem;
+    color: $color-grey-light-2;
+
+    &::before,
+    &::after {
+      content: "";
+      height: 1px;
+      display: block;
+      // uses the current text color
+      background-color: currentColor;
+    }
+  }
+
+  &__seenon-logos {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    column-gap: 3rem;
+    justify-items: center;
+    align-items: center;
+
+    img {
+      // for responsiveness
+      max-height: 2.5rem;
+      max-width: 100%;
+      filter: brightness(70%);
+    }
+  }
+}

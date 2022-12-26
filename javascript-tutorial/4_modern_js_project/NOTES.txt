@@ -1,0 +1,67 @@
+1. modern JS
+    - using different tools, libraries and frameworks bundled in the NodeJS ecosystem
+    - npm - node package manager - CLI for managing JS
+    - Babel - used for converting ES6 and newer versions into ES5
+    - ES6 modules - used to separate code into different files
+    - Webpack - browsers do not support ES6 modules - webpack is used to bundle those modules into a single file readable by the browser, and also many other features
+
+2. configuring node & npm
+    - npm init -> creates package.json
+    - npm install webpack --save-dev -> creates a webpack dev dependency in package.json
+    - dependencies are saved in node_modules folder, to automatically install all dependencies from package.json just run npm install
+
+3. configuring webpack
+    - look at webpack.config.js -> specify the entry and the output
+    - npm install webpack-cli
+    - npm run dev (script from package.json) - development mode (uncompressed)
+    - npm run build - production mode (compressed)
+
+4. webpack dev server
+    - npm install webpack-dev-server --save-dev
+    - added configuration in webpack.config.js and the start script in package.json
+    - src folder is for development, dist is the package shipped to clients in the end
+    - to automatically copy the html from our src folder to the dist folder we need to use the webpack html plugin -> npm install html-webpack-plugin --save-dev
+    - add required config to webpack.config.js
+    - npm run start - script to start dev server
+
+5. configuring babel
+    - npm install --save-dev @babel/core @babel/preset-env babel-loader
+    - add the module rules in the package.json
+    - we also need to create a .babelrc file with some additional config
+    - npm install --save core-js@3 regenerator-runtime -> used to create ES5 implementation for new ES6 features such as Promises
+
+6. ES6 modules (export, import)
+    - if we want to export just one value from a file we can use default export
+        - e.g.
+            export default 'I am an exported string.';  
+                -> in Search.js
+            import str from './models/Search'   
+                -> in index.js, we can use any name for the default import
+
+    - if we want to export multiple values from a file we can use named export
+        - e.g.
+            export const add = (a, b) => a + b;
+            export const multiply = (a, b) => a * b;
+            export const ID = 23;
+                -> in searchView.js
+            import { add, multiply, ID } from './views/searchView';
+                -> in index.js, the names of the imports must match
+            import { add as a, multiply as b, ID as c } from './views/searchView';
+                -> if we want to use different names for imported values
+            import * as searchView from './views/searchView';
+                -> if we want to import everything at once, to use it then we have to reference it like this: searchView.add(), searchView.multiplly, searchView.ID
+
+7. App
+    - using axios because the fetch API doesn't work on all old browsers
+    - MVC architecture - models and views communicate using the controllers from index.js
+    - different DOM elements in base.js
+    - cool way of manipulating html markup in searchView.js
+    - example of reduce method in searchView.js (limitRecipeTitle)
+    - take a look at base.js -> renderLoader -> href on svg
+    - paginaton is a bit tricky in js
+    - event delegation (delegating events to child elements) in index.js pagination part (.closest method)
+    - reading from url, hashchange event - index.js - recipe controller
+    - Recipe class has some weird methods
+    - event delegation with .matches (index.js)
+    - difference between slice and splice (List.js)
+    - localStorageApi in Likes model
